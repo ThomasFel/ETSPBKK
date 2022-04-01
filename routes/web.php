@@ -14,7 +14,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return View::make('pages.homes');
+});
+
+Route::get('/profile', function () {
+    return View::make('pages.profile');
+});
+
+Route::get('/company', function () {
+    return View::make('pages.company');
+});
+
+Route::get('/service', function () {
+    return View::make('pages.service');
+});
+
+Route::get('/collaboration', function () {
+    return View::make('pages.collaboration');
+});
+
+Route::get('/news', function () {
+    return View::make('pages.news');
+});
+
+Route::get('/order', function () {
+    return View::make('pages.order');
 });
 
 Auth::routes();
