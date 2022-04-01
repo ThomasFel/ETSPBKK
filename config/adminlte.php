@@ -243,17 +243,17 @@ return [
         ],
         [
             'text' => 'list_customer',
-            'url'  => 'home/customers',
+            'url'  => 'admin/customers',
             'icon' => 'fas fa-fw fa-users',
         ],
         [
             'text' => 'list_user',
-            'url'  => 'home/users',
+            'url'  => 'admin/users',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'list_news',
-            'url'  => 'home/news',
+            'url'  => 'admin/news',
             'icon' => 'fas fa-fw fa-newspaper',
         ],
     ],

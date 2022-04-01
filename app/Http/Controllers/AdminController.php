@@ -1,20 +1,41 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use Illuminate\Http\Request;
 
-class UserController extends Controller
+use Illuminate\Http\Request;
+use App\Models\User;
+
+class AdminController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('pages.admin.index');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list_user()
     {
         $users = User::all();
-        return view('users.index', [
+        return view('pages.admin.list_user', [
             'users' => $users
         ]);
     }

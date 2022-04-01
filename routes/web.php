@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\NewsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,49 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return View::make('pages.homes');
-});
-
-Route::get('/profile', function () {
-    return View::make('pages.profile');
-});
-
-Route::get('/company', function () {
-    return View::make('pages.company');
-});
-
-Route::get('/service', function () {
-    return View::make('pages.service');
-});
-
-Route::get('/collaboration', function () {
-    return View::make('pages.collaboration');
-});
-
-Route::get('/news', function () {
-    return View::make('pages.news');
-});
-
-Route::get('/order', function () {
-    return View::make('pages.order');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/collaboration', [HomeController::class, 'collaboration'])->name('collaboration');
+Route::get('/company', [HomeController::class, 'company'])->name('company');
+Route::get('/news', [HomeController::class, 'news'])->name('news');
+Route::get('/order', [HomeController::class, 'order'])->name('order');
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+Route::get('/service', [HomeController::class, 'service'])->name('service');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index']);
+    
+    Route::get('/admin/users', [AdminController::class, 'list_user']);
 
-Auth::routes();
+    Route::get('/admin/customers', [CustomerController::class, 'index']);
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
-
-Route::resource('/home/customers', \App\Http\Controllers\CustomerController::class)
-    ->middleware('auth');
-
-Route::resource('/home/users', \App\Http\Controllers\UserController::class)
-    ->middleware('auth');
-
-Route::resource('/home/news', \App\Http\Controllers\NewsController::class)
-    ->middleware('auth');
+    Route::get('/admin/news', [NewsController::class, 'index']);
+});
