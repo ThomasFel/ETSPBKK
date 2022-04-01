@@ -26,3 +26,12 @@ Auth::routes();
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::resource('/home/customers', \App\Http\Controllers\CustomerController::class)
+    ->middleware('auth');
+
+Route::resource('/home/users', \App\Http\Controllers\UserController::class)
+    ->middleware('auth');
+
+Route::resource('/home/news', \App\Http\Controllers\NewsController::class)
+    ->middleware('auth');
