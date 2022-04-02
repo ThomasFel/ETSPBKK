@@ -26,6 +26,8 @@ Route::get('/order', [HomeController::class, 'order'])->name('order');
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('/service', [HomeController::class, 'service'])->name('service');
 
+Route::post('/order', [HomeController::class, 'order'])->name('order');
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
