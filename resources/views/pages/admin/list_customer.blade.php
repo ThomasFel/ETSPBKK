@@ -8,31 +8,35 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{route('users.create')}}" class="btn btn-primary mb-2">
-                        Tambah
-                    </a>
-                    <table class="table table-hover table-bordered table-stripped" id="example2">
+                    <table class="table table-hover table-bordered table-stripped">
                         <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Nama</th>
+                            <th>Nama Pelanggan</th>
+                            <th>Nama Perusahaan</th>
                             <th>Email</th>
+                            <th>Nomor Telepon</th>
                             <th>Opsi</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $key => $user)
+                        @foreach($customers as $key => $customer)
                             <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
+                                <td>{{$key + 1}}</td>
+                                <td>{{$customer->name}}</td>
+                                <td>{{$customer->company_name}}</td>
+                                <td>{{$customer->email}}</td>
+                                <td>{{$customer->phone_number}}</td>
                                 <td>
-                                    <a href="{{route('users.edit', $user)}}" class="btn btn-primary btn-xs">
+                                    <a href="{{ route('admin.customer.edit', ['id' => $customer->id]) }}" class="btn btn-primary btn-sm mb-2">
                                         Edit
                                     </a>
-                                    <a href="{{route('users.destroy', $user)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                        Delete
-                                    </a>
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ingin menghapusnya?');" action="{{ route('admin.customer.delete', $customer->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            Delete
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -43,21 +47,3 @@
         </div>
     </div>
 @stop
-@push('js')
-    <form action="" id="delete-form" method="post">
-        @method('delete')
-        @csrf
-    </form>
-    <script>
-        $('#example2').DataTable({
-            "responsive": true,
-        });
-        function notificationBeforeDelete(event, el) {
-            event.preventDefault();
-            if (confirm('Apakah anda yakin akan menghapus data ? ')) {
-                $("#delete-form").attr('action', $(el).attr('href'));
-                $("#delete-form").submit();
-            }
-        }
-    </script>
-@endpush

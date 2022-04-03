@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Customer;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -14,7 +15,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::get();
+        return view('pages.admin.list_customer', compact('customers'));
     }
 
     /**
@@ -35,7 +37,35 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'service_id' => 'required|exists:services,id',
+            'name' => 'required|string',
+            'company_name' => 'required|string',
+            'country' => 'required|string',
+            'address' => 'required',
+            'post_code' => 'required|string',
+            'email' => 'required|email',
+            'phone_number' => 'required|string'
+        ]);
+
+        try {
+            $customer = Customer::create([
+                'service_id' => $request->service_id,
+                'name' => $request->name,
+                'company_name' => $request->company_name,
+                'country' => $request->country,
+                'address' => $request->address,
+                'post_code' => $request->post_code,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number
+            ]);
+    
+            return redirect()->back()->with(['success' => "Customer Creation Succeeded!"]);
+        }
+        
+        catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -57,7 +87,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        return view('pages.admin.list_customer_edit', compact('customer'));
     }
 
     /**
@@ -69,7 +100,39 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'service_id' => 'required|exists:services,id',
+            'name' => 'required|string',
+            'company_name' => 'required|string',
+            'country' => 'required|string',
+            'address' => 'required',
+            'post_code' => 'required|string',
+            'email' => 'required|email',
+            'phone_number' => 'required|string'
+        ]);
+
+        try {
+            $customer = Customer::where('id', $id)->first();
+
+            $customer->update([
+                'service_id' => $request->service_id,
+                'name' => $request->name,
+                'company_name' => $request->company_name,
+                'country' => $request->country,
+                'address' => $request->address,
+                'post_code' => $request->post_code,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number
+            ]);
+
+            $customer->save();
+    
+            return redirect()->back()->with(['success' => "Customer Updated!"]);
+        }
+        
+        catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -80,6 +143,8 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        $customer->delete();
+        return redirect(route('admin.customers'))->with(['success' => "Customer Deletion Succeeded!"]);
     }
 }

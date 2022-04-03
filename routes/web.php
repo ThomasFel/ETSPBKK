@@ -26,16 +26,19 @@ Route::get('/order', [HomeController::class, 'order'])->name('order');
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('/service', [HomeController::class, 'service'])->name('service');
 
-Route::post('/order', [HomeController::class, 'order'])->name('order');
+Route::post('/order', [CustomerController::class, 'store'])->name('customer.add');
 
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     
-    Route::get('/admin/users', [AdminController::class, 'list_user']);
+    Route::get('/admin/users', [AdminController::class, 'list_user'])->name('admin.users');
 
-    Route::get('/admin/customers', [CustomerController::class, 'index']);
+    Route::get('/admin/customers', [CustomerController::class, 'index'])->name('admin.customers');
+    Route::get('/admin/edit-customer/{id}', [CustomerController::class, 'edit'])->name('admin.customer.edit');
+    Route::post('/admin/edit-customer/{id}', [CustomerController::class, 'update'])->name('admin.customer.update');
+    Route::post('/admin/delete-customer/{id}', [CustomerController::class, 'destroy'])->name('admin.customer.delete');
 
-    Route::get('/admin/news', [NewsController::class, 'index']);
+    Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news');
 });
