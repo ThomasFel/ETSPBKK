@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -60,7 +59,7 @@ class CustomerController extends Controller
                 'phone_number' => $request->phone_number
             ]);
     
-            return redirect()->back()->with(['success' => "Customer Creation Succeeded!"]);
+            // return redirect()->back()->with(['success' => "Customer Creation Succeeded!"]);
         }
         
         catch (\Exception $e) {

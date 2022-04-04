@@ -41,4 +41,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/delete-customer/{id}', [CustomerController::class, 'destroy'])->name('admin.customer.delete');
 
     Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news');
+    Route::get('/admin/edit-news/{id}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::get('/admin/create-news/', [NewsController::class, 'store'])->name('admin.news.create');
+    Route::post('/admin/edit-news/{id}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::post('/admin/delete-news/{id}', [NewsController::class, 'destroy'])->name('admin.news.delete');
+    Route::post('/admin/create-news/', [NewsController::class, 'store'])->name('admin.news.create');
 });

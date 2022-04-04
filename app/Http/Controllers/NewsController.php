@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
+
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -13,7 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $news = News::get();
+        return view('pages.admin.list_news', compact('news'));
     }
 
     /**
@@ -23,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.list_news_create');
     }
 
     /**
@@ -34,7 +37,25 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id' => 'required|exists:news,id',
+            'title' => 'required|string',
+            'description' => 'required|string'
+        ]);
+
+        try {
+            $news = News::create([
+                'id' => $request->id,
+                'title' => $request->title,
+                'description' => $request->description
+            ]);
+    
+            return redirect()->back()->with(['success' => "News Creation Succeeded!"]);
+        }
+        
+        catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -56,7 +77,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $news = News::findOrFail($id);
+        return view('pages.admin.list_news_edit', compact('news'));
     }
 
     /**
@@ -68,7 +90,29 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'id' => 'required|exists:news,id',
+            'title' => 'required|string',
+            'description' => 'required|string'
+        ]);
+
+        try {
+            $news = News::where('id', $id)->first();
+
+            $news->update([
+                'id' => $request->id,
+                'title' => $request->title,
+                'description' => $request->description
+            ]);
+
+            $news->save();
+    
+            return redirect()->back()->with(['success' => "News Updated!"]);
+        }
+        
+        catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -79,6 +123,8 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $news = News::findOrFail($id);
+        $news->delete();
+        return redirect(route('admin.news'))->with(['success' => "News Deletion Succeeded!"]);
     }
 }
