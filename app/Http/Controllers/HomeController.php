@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\News;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,8 @@ class HomeController extends Controller
 
     public function news()
     {
-        return view('pages.user.news');
+        $news = News::with('admin')->get();
+        return view('pages.user.news', compact('news'));
     }
 
     public function order()
@@ -44,5 +46,11 @@ class HomeController extends Controller
     public function service()
     {
         return view('pages.user.service');
+    }
+
+    public function showPost($slug)
+    {
+        $news = News::where('slug', $slug)->first();
+        return view('news-show', compact('news'));
     }
 }

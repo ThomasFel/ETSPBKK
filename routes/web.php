@@ -22,6 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/collaboration', [HomeController::class, 'collaboration'])->name('collaboration');
 Route::get('/company', [HomeController::class, 'company'])->name('company');
 Route::get('/news', [HomeController::class, 'news'])->name('news');
+Route::get('/news/{id}', [HomeController::class, 'showPost'])->name('news.show');
 Route::get('/order', [HomeController::class, 'order'])->name('order');
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('/service', [HomeController::class, 'service'])->name('service');
@@ -41,9 +42,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/delete-customer/{id}', [CustomerController::class, 'destroy'])->name('admin.customer.delete');
 
     Route::get('/admin/news', [NewsController::class, 'index'])->name('admin.news');
-    Route::get('/admin/edit-news/{id}', [NewsController::class, 'update'])->name('admin.news.update');
-    Route::get('/admin/create-news/', [NewsController::class, 'store'])->name('admin.news.create');
+    Route::get('/admin/edit-news/{id}', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::get('/admin/create-news/', [NewsController::class, 'create'])->name('admin.news.show_add');
     Route::post('/admin/edit-news/{id}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::post('/admin/create-news/', [NewsController::class, 'store'])->name('admin.news.add');
     Route::post('/admin/delete-news/{id}', [NewsController::class, 'destroy'])->name('admin.news.delete');
-    Route::post('/admin/create-news/', [NewsController::class, 'store'])->name('admin.news.create');
 });

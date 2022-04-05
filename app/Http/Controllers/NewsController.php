@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use File;
 
 class NewsController extends Controller
 {
@@ -15,7 +18,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::get();
+        $news = News::with('admin')->get();
         return view('pages.admin.list_news', compact('news'));
     }
 
@@ -26,7 +29,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.list_news_create');
+        $admins = User::get();
+        return view('pages.admin.list_news_create', compact('admins'));
     }
 
     /**
@@ -38,19 +42,28 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'id' => 'required|exists:news,id',
             'title' => 'required|string',
-            'description' => 'required|string'
+            'body' => 'required',
+            'admin_id' => 'required|exists:users,id',
+            'photo' => 'required'
         ]);
 
         try {
+            if ($request->hasFile('photo')) {
+                $photo_name = $request->file('photo')->getClientOriginalName();
+                $destination = base_path() . '/public/photos';
+                $request->file('photo')->move($destination, $photo_name);
+            }
+
             $news = News::create([
-                'id' => $request->id,
                 'title' => $request->title,
-                'description' => $request->description
+                'body' => $request->body,
+                'slug' => Str::slug($request->title, '-'),
+                'admin_id' => $request->admin_id,
+                'photo' => $photo_name
             ]);
     
-            return redirect()->back()->with(['success' => "News Creation Succeeded!"]);
+            return redirect()->back()->with(['success' => "Posted!"]);
         }
         
         catch (\Exception $e) {
@@ -66,7 +79,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        return route('news.show', $id);
     }
 
     /**
@@ -77,8 +90,9 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news = News::findOrFail($id);
-        return view('pages.admin.list_news_edit', compact('news'));
+        $admins = User::get();
+        $news = News::with('admin')->findorFail($id);
+        return view('pages.admin.list_news_edit', compact('news', 'admins'));
     }
 
     /**
@@ -91,18 +105,35 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'id' => 'required|exists:news,id',
             'title' => 'required|string',
-            'description' => 'required|string'
+            'body' => 'required',
+            'admin_id' => 'required|exists:users,id',
+            'photo' => 'required',
         ]);
 
         try {
             $news = News::where('id', $id)->first();
+            
+            if ($request->hasFile('photo')) {
+                $destination = base_path() . '/public/photos';
+
+                if ($news->photo != ''  && $news->photo != null) {
+                    $file_old = $destination.'/'.$news->photo;
+                    unlink($file_old);
+                }
+                
+                $photo_name = $request->file('photo')->getClientOriginalName();
+                $request->file('photo')->move($destination, $photo_name);
+                
+                $news->update(['photo' => $photo_name]);
+            }
 
             $news->update([
-                'id' => $request->id,
                 'title' => $request->title,
-                'description' => $request->description
+                'body' => $request->body,
+                'slug' => Str::slug($request->title, '-'),
+                'admin_id' => $request->admin_id,
+                'photo' => $photo_name
             ]);
 
             $news->save();
@@ -123,8 +154,16 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $news = News::findOrFail($id);
-        $news->delete();
-        return redirect(route('admin.news'))->with(['success' => "News Deletion Succeeded!"]);
+        try {
+            $news = News::findOrFail($id);
+            File::delete('photos/'.$news->photo);
+            $news->delete();
+            
+            return redirect(route('admin.news'))->with(['success' => "News Deletion Succeeded!"]);
+        }
+        
+        catch(\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 }
