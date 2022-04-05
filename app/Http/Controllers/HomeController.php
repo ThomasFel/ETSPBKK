@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function news()
     {
         $news = News::with('admin')->get();
-        return view('pages.user.news', compact('news'));
+        return view('news.news', compact('news'));
     }
 
     public function order()
@@ -50,7 +50,7 @@ class HomeController extends Controller
 
     public function showPost($slug)
     {
-        $news = News::where('slug', $slug)->first();
-        return view('news-show', compact('news'));
+        $news = News::where('slug', $slug)->get();
+        return view('news.news-show', compact('news'));
     }
 }

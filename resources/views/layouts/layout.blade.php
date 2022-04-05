@@ -48,7 +48,7 @@
             <div id="intro-example" class="p-5 text-center bg-image">
                 <div class="d-flex justify-content-center align-items-center h-100 text-center">
                     <div class="text-white">
-                    <h1 class="mb-3 display-2 fw-bold">BLOCKDEV</span></h1>
+                    <h1 class="mb-3 display-2 fw-bold">{{ $title ?? 'BLOCKDEV' }}</span></h1>
                     <h5 class="mb-4">@yield('desc')</h5>
                     <a class="btn btn-outline-light btn-lg m-2" href='#@yield("detail")' role="button">Read More</a>
                     </div>
