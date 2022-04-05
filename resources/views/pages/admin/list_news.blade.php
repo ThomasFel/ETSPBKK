@@ -27,7 +27,7 @@
                                 <td>{{$key + 1}}</td>
                                 <td>{{$list_news->title}}</td>
                                 <td>{{$list_news->admin->name}}</td>
-                                <td>{{ date('d F Y', strtotime($list_news->created_at)) ?? '' }}<br/>{{ date('h:m:s', strtotime($list_news->created_at)) ?? '' }}</td>
+                                <td>{{ date('d F Y', strtotime($list_news->created_at)) ?? '' }}<br/>{{ date('H:m:s', strtotime($list_news->created_at)) ?? '' }}</td>
                                 <td>
                                     <a href="{{ route('admin.news.edit', ['id' => $list_news->id]) }}" class="btn btn-primary btn-sm mb-2">
                                         Edit

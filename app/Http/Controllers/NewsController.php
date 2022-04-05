@@ -107,8 +107,7 @@ class NewsController extends Controller
         $this->validate($request, [
             'title' => 'required|string',
             'body' => 'required',
-            'admin_id' => 'required|exists:users,id',
-            'photo' => 'required',
+            'admin_id' => 'required|exists:users,id'
         ]);
 
         try {
@@ -132,8 +131,7 @@ class NewsController extends Controller
                 'title' => $request->title,
                 'body' => $request->body,
                 'slug' => Str::slug($request->title, '-'),
-                'admin_id' => $request->admin_id,
-                'photo' => $photo_name
+                'admin_id' => $request->admin_id
             ]);
 
             $news->save();

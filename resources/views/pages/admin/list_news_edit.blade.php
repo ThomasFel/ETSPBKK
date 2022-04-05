@@ -29,8 +29,8 @@
 
                     <div class="form-group">
                         <label class="mt-2 mb-3">Foto</label>
-                        <br>
-                        <img src="/photos/{{ $news->photo }}" class="img-thumbnail mb-3">
+                        <br/>
+                        <img src="{{ asset('photos/' . $news->photo) }}" class="img-thumbnail mb-3" width="350">
                         <input type="file" class="form-control-file" name="photo" id="photo">
                     </div>
                     

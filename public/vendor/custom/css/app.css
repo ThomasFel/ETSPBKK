@@ -49,6 +49,10 @@
   .text-justify {
     text-align: justify;
   }
+
+  a {
+    text-decoration: none;
+  }
   
   .shadow,
   .subscription-wrapper {
@@ -89,11 +93,17 @@
   }
   
   .icon-cyan {
-    color: #02d0a1
+    color: #02d0a1;
+    transition: all 0.3s;
   }
   
   .icon-bg-cyan::after {
     background: #02d0a1
+  }
+
+  .icon-cyan:hover {
+    color: #dcfaf1;
+    transition: all 0.3s;
   }
   
   #btn-back-to-top {
