@@ -10,6 +10,7 @@
     <!-- <link rel="stylesheet" href="~/css/site.css"/> -->
 </head>
 <body style="background-image:url('{{ asset('/image/bg.jpg') }}'); background-repeat: no-repeat; background-attachment: fixed;">
+    @include('sweetalert::alert')
     <div>
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
@@ -49,7 +50,7 @@
                 <div class="d-flex justify-content-center align-items-center h-100 text-center">
                     <div class="text-white">
                     <h1 class="mb-3 display-2 fw-bold">{{ $title ?? 'BLOCKDEV' }}</span></h1>
-                    <h5 class="mb-4">@yield('desc')</h5>
+                    <h4 class="mb-4">@yield('desc')</h4>
                     <a class="btn btn-outline-light btn-lg m-2" href='#@yield("detail")' role="button">Read More</a>
                     </div>
                 </div>
@@ -73,5 +74,6 @@
     <script src="{{ asset('/vendor/popper/popper.min.js') }}"></script>
     <script src="{{ asset('/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/vendor/custom/js/site.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>

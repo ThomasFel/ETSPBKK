@@ -6,21 +6,10 @@
 
 @section('content')
 <section id="form-orders">
-   <!-- @if (session('success'))
-   <div class="alert alert-success">
-      {{ session('success') }}
-    </div>
-
-   @elseif (session('error'))
-   <div class="alert alert-danger">
-      {{ session('error') }}
-    </div>
-   @endif -->
-
    <div class="text-center">
       <h1 class="display-3 fw-bold">Order</h1>
       <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
-      <p class="p-text text-white mb-5">Order Our Services</p>
+      <h4 class="p-text text-white mb-5">Order Our Services</h4>
    </div>
    <div class="container">
       <div class="row justify-content-center">
@@ -70,7 +59,7 @@
                            </select>
                         </div>
                         <div class="form-group">
-                           <button class="btn btn-outline-light btn-lg mt-4">Submit</button>
+                           <button class="btn btn-outline-light btn-md mt-5">Submit</button>
                         </div>
                      </form>
                   </div>
@@ -79,4 +68,19 @@
       </div>
    </div>
 </section>
+
+<!-- @if (session('success'))
+   <script>
+      Swal.fire({
+         icon: 'success',
+         title: 'Success',
+         text: 'Your request has been sent!'
+      })
+   </script>
+
+@elseif (session('error'))
+<div class="alert alert-danger">
+   {{ session('error') }}
+   </div>
+@endif -->
 @stop
