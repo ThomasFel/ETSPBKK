@@ -9,7 +9,7 @@
     <div class="text-center">
         <h1 class="display-3 fw-bold">About Us</h1>
         <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
-        <h5 class="text-white mb-5">Profile of BlockDev</h5>
+        <h4 class="text-white mb-5">Profile of BlockDev</h4>
     </div> 
     <div class="row">
         <div class="col-sm-6">
@@ -28,7 +28,7 @@
     <div class="text-center">
         <h1 class="display-3 fw-bold">Our Services</h1>
         <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
-        <h5 class="text-white mb-5">Services offered by Blockdev</h5>
+        <h4 class="text-white mb-5">Services offered by Blockdev</h4>
     </div> 
     <div class="row">
         <div class="col-lg-4 col-sm-6 mb-4">
@@ -65,7 +65,7 @@
     <div class="text-center">
         <h1 class="display-3 fw-bold">Testimonial</h1>
         <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
-        <h5 class="p-text text-white mb-5">What our clients are saying</h5>
+        <h4 class="p-text text-white mb-5">What our clients are saying</h4>
     </div> 
     <div class="testimonial-slider bg-dark">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

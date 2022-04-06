@@ -5,6 +5,22 @@ h6 {
 	-webkit-font-smoothing: antialiased;
 }
 
+.post-item {
+  position: relative;
+  list-style-type: none;
+  padding: 5px 0 5px 30px;
+}
+
+.post-item:before {
+	content: "\f058";
+	position: absolute;
+	font-family: "Font Awesome 5 Free";
+	font-size: 1.125em;
+	color: #17D1AC;
+	left: 0px;
+	top: 3px;
+}
+
 .navbar .navbar-nav .nav-link {
     color: #000000;
     font-size: 1.1em;
