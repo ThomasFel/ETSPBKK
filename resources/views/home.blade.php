@@ -9,25 +9,26 @@
     <div class="text-center">
         <h1 class="display-3 fw-bold">About Us</h1>
         <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
-        <p class="p-text text-white mb-5">Profile of BlockDev</p>
+        <h5 class="text-white mb-5">Profile of BlockDev</h5>
     </div> 
     <div class="row">
         <div class="col-sm-6">
             <img class='border rounded mt-4' style="max-width:70%;" src='{{ asset("/image/BlockDev-Logo.png") }}'>
         </div>
         <div class="col-sm-6">
-            <h5 class="text-justify mt-4 text-light h5">BlockDev is a startup that specializes in creating WordPress plugins and themes. Hundreds of well-known clients such as SemenGresik, Desa Oro-Oro Ombo and many others choose us as partners to improve their websites to achieve the best results. BlockDev is able to meet your expectations in perfecting the features of your start-up web development including planning, system design, content, prototypes, UI/UX, neat code implementation, infrastructure and testing. Everything will work according to your expectations to provide features in your startup website.</h5>
+            <h5 class="text-justify mt-4 text-light" style="font-weight: 200; font-size: 20px">BlockDev is a startup that specializes in creating WordPress plugins and themes. Hundreds of well-known clients such as SemenGresik, Desa Oro-Oro Ombo and many others choose us as partners to improve their websites to achieve the best results. BlockDev is able to meet your expectations in perfecting the features of your start-up web development including planning, system design, content, prototypes, UI/UX, neat code implementation, infrastructure and testing. Everything will work according to your expectations to provide features in your startup website.</h5>
             <div class="text-center">
-                <a href="{{route('company')}}" class="btn btn-outline-light btn-lg mt-5 text-center">View More</a>
+                <a href="{{ route('company') }}" class="btn btn-outline-light btn-lg mt-5 text-center">View More</a>
             </div>
         </div>
     </div>
 </section>
+
 <section id="services">
     <div class="text-center">
         <h1 class="display-3 fw-bold">Our Services</h1>
         <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
-        <p class="p-text text-white mb-5">Services offered by Blockdev</p>
+        <h5 class="text-white mb-5">Services offered by Blockdev</h5>
     </div> 
     <div class="row">
         <div class="col-lg-4 col-sm-6 mb-4">
@@ -59,11 +60,12 @@
         <a href="{{route('service')}}" class="btn btn-outline-light btn-lg mt-3 text-center">View More</a>
     </div>
 </section>
+
 <section id="testimonial">
     <div class="text-center">
         <h1 class="display-3 fw-bold">Testimonial</h1>
         <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
-        <p class="p-text text-white mb-5">What our clients are saying</p>
+        <h5 class="p-text text-white mb-5">What our clients are saying</h5>
     </div> 
     <div class="testimonial-slider bg-dark">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
