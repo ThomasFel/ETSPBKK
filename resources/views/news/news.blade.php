@@ -16,9 +16,9 @@
          <div class="card bg-dark border-0 shadow rounded-xs pt-2">
             <div class="card-body text-white">
                <img src="{{ asset('photos/' . $list_news->photo) }}" class="mb-2 mx-auto d-block card-img-top">
-               <h2 class="mt-3 icon-cyan">
+               <h4 class="mt-3 icon-cyan">
                   <a href="{{ route('news.show', $list_news->slug) }}" class="icon-cyan">{{ $list_news->title }}</a>
-               </h2>
+               </h4>
                <p class="mt-2 mb-4">
                   <i class="fas fa-users" style="padding-right: 10px;"></i>{{ $list_news->admin->name }}
                   <i class="fas fa-clock" style="padding: 0 10px 0 20px;"></i>{{ date('d F Y', strtotime($list_news->created_at)) ?? '' }}

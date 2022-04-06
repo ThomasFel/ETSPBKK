@@ -50,7 +50,7 @@ class HomeController extends Controller
 
     public function showPost($slug)
     {
-        $news = News::where('slug', $slug)->get();
+        $news = News::where('slug', $slug)->first();
         return view('news.news-show', compact('news'));
     }
 }

@@ -52,6 +52,11 @@
 
   a {
     text-decoration: none;
+    color: #17D1AC;
+  }
+
+  a:hover {
+    color: #dcfaf1;
   }
   
   .shadow,
