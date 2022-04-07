@@ -15,7 +15,7 @@ class CustomerSeeder extends Seeder
     public function run()
     {
         Customer::create([
-            'services_id' => '1',
+            'service_id' => '1',
             'name' => 'Daeho',
             'company_name' => 'Toonily',
             'country' => 'Korea',
@@ -26,7 +26,7 @@ class CustomerSeeder extends Seeder
         ]);
 
         Customer::create([
-            'services_id' => '2',
+            'service_id' => '2',
             'name' => 'Kosimp',
             'company_name' => 'Kosimp Familia',
             'country' => 'Japan',
