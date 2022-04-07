@@ -4,17 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title')</title>
+    <link rel="icon" type="image/png" sizes="32x32" href='{{ asset("/image/icon.png") }}'>
     <link rel="stylesheet"  type="text/css" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet"  type="text/css" href="{{ asset('/vendor/custom/css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css"/>
     <!-- <link rel="stylesheet" href="~/css/site.css"/> -->
 </head>
 <body style="background-image:url('{{ asset('/image/bg.jpg') }}'); background-repeat: no-repeat; background-attachment: fixed;">
+    @include('sweetalert::alert')
     <div>
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
                 <div class="container text-light">
-                    <a class="navbar-brand" href="/">BlockDev</a>
+                    <a class="navbar-brand" style="font-weight: 600;" href="/">BlockDev</a>
                     
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                         <span class="navbar-toggler-icon"></span>
@@ -49,7 +51,7 @@
                 <div class="d-flex justify-content-center align-items-center h-100 text-center">
                     <div class="text-white">
                     <h1 class="mb-3 display-2 fw-bold">{{ $title ?? 'BLOCKDEV' }}</span></h1>
-                    <h5 class="mb-4">@yield('desc')</h5>
+                    <h4 class="mb-4">@yield('desc')</h4>
                     <a class="btn btn-outline-light btn-lg m-2" href='#@yield("detail")' role="button">Read More</a>
                     </div>
                 </div>

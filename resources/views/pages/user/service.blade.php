@@ -9,7 +9,7 @@
     <div class="text-center">
         <h1 class="display-3 fw-bold">Our Services</h1>
         <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
-        <p class="p-text text-white mb-5">Services offered by Blockdev</p>
+        <h4 class="p-text text-white mb-5">Services offered by Blockdev</h4>
     </div> 
    <div class="row">
         <div class="col-lg-6 col-sm-6 mb-4">

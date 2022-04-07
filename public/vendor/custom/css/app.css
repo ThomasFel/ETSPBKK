@@ -1,3 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+h6, form, .navbar-brand {
+	font-family: 'Poppins', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.post-item {
+  position: relative;
+  list-style-type: none;
+  padding: 5px 0 5px 30px;
+}
+
+.post-item:before {
+	content: "\f058";
+	position: absolute;
+	font-family: "Font Awesome 5 Free";
+	font-size: 1.125em;
+	color: #17D1AC;
+	left: 0px;
+	top: 3px;
+}
+
 .navbar .navbar-nav .nav-link {
     color: #000000;
     font-size: 1.1em;

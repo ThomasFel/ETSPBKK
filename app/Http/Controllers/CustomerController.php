@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Alert;
 
 class CustomerController extends Controller
 {
@@ -58,8 +59,10 @@ class CustomerController extends Controller
                 'email' => $request->email,
                 'phone_number' => $request->phone_number
             ]);
-    
-            // return redirect()->back()->with(['success' => "Customer Creation Succeeded!"]);
+            
+            Alert::success('Success', 'Your request has been sent!');
+
+            return redirect()->back()->with(['success' => "Customer Creation Succeeded!"]);
         }
         
         catch (\Exception $e) {
