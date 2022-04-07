@@ -5,16 +5,6 @@
 @section('detail', 'startup-profile')
 
 @section('content')
-   <section id="startup-profile">
-      <div class="text-center">
-         <h1 class="display-3 fw-bold">About Us</h1>
-         <hr class="bg-white mb-3 mt-0 d-inline-block mx-auto" style="width: 100px; height:3px;">
-         <h4 class="p-text text-white mb-5">Profile of BlockDev</h4>
-      </div>
-      <div class="row">
-         <div class="text-center mt-4 text-light" style="font-size: 20px">BlockDev is a startup that specializes in creating WordPress plugins and themes. Hundreds of well-known clients such as SemenGresik, Desa Oro-Oro Ombo and many others choose us as partners to improve their websites to achieve the best results. BlockDev is able to meet your expectations in perfecting the features of your start-up web development including planning, system design, content, prototypes, UI/UX, neat code implementation, infrastructure and testing. Everything will work according to your expectations to provide features in your startup website.</div>
-      </div>
-   </section>
    <section id="values">
       <div class="text-center">
          <h1 class="display-3 fw-bold">Value</h1>
