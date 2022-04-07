@@ -75,6 +75,5 @@
     <script src="{{ asset('/vendor/popper/popper.min.js') }}"></script>
     <script src="{{ asset('/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/vendor/custom/js/site.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>
