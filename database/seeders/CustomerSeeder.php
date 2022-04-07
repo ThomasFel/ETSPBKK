@@ -14,6 +14,26 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Customer::create([
+            'services_id' => '1',
+            'name' => 'Daeho',
+            'company_name' => 'Toonily',
+            'country' => 'Korea',
+            'address' => 'Seoul, Korea',
+            'post_code' => '07946',
+            'email' => 'daeho@gmail.com',
+            'phone_number' => '0821025058048'
+        ]);
+
+        Customer::create([
+            'services_id' => '2',
+            'name' => 'Kosimp',
+            'company_name' => 'Kosimp Familia',
+            'country' => 'Japan',
+            'address' => 'Shibuya, Tokyo, Japan',
+            'post_code' => '1500002',
+            'email' => 'kosimp@gmail.com',
+            'phone_number' => '0123456789'
+        ]);
     }
 }
